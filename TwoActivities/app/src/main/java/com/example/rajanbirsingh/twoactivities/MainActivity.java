@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,11 +14,20 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.android.extra.MESSAGE";
     private EditText mMessageEditText;
 
+    // later step for receiving the reply back from the second activity
+    public static final int TEXT_REQUEST = 1;
+    private TextView mReplyHeadTextView;
+    private TextView mReplyTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mMessageEditText = findViewById(R.id.editText_main);
+
+        // later step for receiving the reply back from the second activity
+        mReplyHeadTextView = findViewById(R.id.text_header_reply);
+        mReplyTextView = findViewById(R.id.text_message_reply);
     }
 
     public void launchSecondActivity(View view) {
@@ -30,6 +40,6 @@ public class MainActivity extends AppCompatActivity {
         String message = mMessageEditText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
 
-        startActivity(intent);
+        startActivityForResult(intent, TEXT_REQUEST);
     }
 }
