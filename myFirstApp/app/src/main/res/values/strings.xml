@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">myFirstApp</string>
+    <string name="helloWorldText">0</string>
+    <string name="toastText">Toast</string>
+    <string name="countText">Count</string>
+    <string name="randomButton">Random</string>
+    <string name="random_heading">Here is a random number between 1 and %1d</string>
+    <string name="r">R</string>
+</resources>

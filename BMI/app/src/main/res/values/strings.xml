@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BMI</string>
+
+    <string-array name="options">
+        <item>Select</item>
+        <item>Option 1</item>
+        <item>Option 2</item>
+    </string-array>
+</resources>

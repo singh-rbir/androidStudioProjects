@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MultipleButtonActivity">
+
+    <Button
+        android:id="@+id/increment_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/reset_label"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:onClick="buttonIncrementClicked"
+        android:text="INCREMENT"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/decrement_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/reset_label"
+        android:onClick="buttonDecrementClicked"
+        android:text="DECREMENT"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/reset_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:onClick="buttonResetClicked"
+        android:text="RESET"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/counter_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="      "
+        android:textSize="24sp" />
+</android.widget.RelativeLayout>
