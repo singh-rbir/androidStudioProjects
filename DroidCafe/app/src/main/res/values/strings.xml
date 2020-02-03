@@ -5,4 +5,18 @@
     <string name="donuts">Donuts are glazed and sprinkled with candy.</string>
     <string name="ice_cream_sandwiches">Ice cream sandwiches have chocolate wafers and vanilla filling.</string>
     <string name="froyo">FroYo is premium self-serve frozen yogurt.</string>
+    <string name="name_label_text">Name</string>
+    <string name="name_hint_text">Enter your name</string>
+    <string name="address_label_text">Address</string>
+    <string name="phone_label_text">Phone</string>
+    <string name="same_day_messenger_service">Same day messenger service</string>
+    <string name="next_day_ground_delivery">Next day ground delivery</string>
+    <string name="pickup">Pickup</string>
+
+    <string-array name="label_array">
+        <item>Home</item>
+        <item>Work</item>
+        <item>Mobile</item>
+        <item>Other</item>
+    </string-array>
 </resources>
