@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Notification Scheduler</string>
+    <string name="none_radio_string">None</string>
+    <string name="any_radio_string">Any</string>
+    <string name="wifi_radio_string">Wifi</string>
+    <string name="network_type_required_string">Network Type Required:</string>
+    <string name="schedule_job_string">Schedule Job</string>
+    <string name="cancel_jobs_string">Cancel Jobs</string>
+</resources>

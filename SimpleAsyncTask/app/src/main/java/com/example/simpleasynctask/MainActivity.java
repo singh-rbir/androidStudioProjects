@@ -3,12 +3,14 @@ package com.example.simpleasynctask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextView;
+    private ProgressBar mBar;
 
     private static final String TEXT_STATE = "currentText";
 
@@ -23,11 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
         mTextView = findViewById(R.id.textView1);
 
+
     }
 
     public void startTask(View view) {
         mTextView.setText(R.string.napping_text);
         new SimpleAsyncTask(mTextView).execute();
+
     }
 
     /*

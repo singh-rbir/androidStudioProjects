@@ -15,6 +15,7 @@ public class SimpleAsyncTask extends AsyncTask<Void, Void, String> {
     }
 
 
+    /* This method does not execute on the main thread */
     @Override
     protected String doInBackground(Void... voids) {
         Random r = new Random();
@@ -34,6 +35,8 @@ public class SimpleAsyncTask extends AsyncTask<Void, Void, String> {
     /*
     When the doInBackground() method completes, the return value is automatically passed to the
     onPostExecute() callback.
+
+    Note: This method executes on the main thread.
      */
     protected void onPostExecute(String result){
         mTextView.get().setText(result);
