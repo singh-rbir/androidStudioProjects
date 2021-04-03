@@ -3,10 +3,23 @@ package com.example.serviceexample;
 import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
+
+import java.io.IOException;
+
+import edu.cmu.sphinx.api.Configuration;
+import edu.cmu.sphinx.api.LiveSpeechRecognizer;
+import edu.cmu.sphinx.api.SpeechResult;
+import edu.cmu.sphinx.api.StreamSpeechRecognizer;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -34,31 +47,40 @@ public class FSAlarmActivity extends AppCompatActivity {
     private View mContentView;
     //private View mControlsView;
     private boolean mVisible;
+    private TextView speechTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_f_s_alarm);
+        mContentView = findViewById(R.id.fullscreen_content);
+        speechTextView = findViewById(R.id.speech_textView);
+
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O)
+//            this.setShowWhenLocked(true);
 
         mVisible = true;
-        //mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
 
-        // Set up the user interaction to manually show or hide the system UI.
-        /*
-        mContentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggle();
-            }
-        });
-         */
+    }
 
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+    public void micButtonClick(View view) throws IOException {
+        Configuration configuration = new Configuration();
+
+        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+        configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+        configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+
+        LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(configuration);
+        // Start recognition process pruning previously cached data.
+        recognizer.startRecognition(true);
+        SpeechResult result = recognizer.getResult();
+
+        // Pause recognition process. It can be resumed then with startRecognition(false).
+        recognizer.stopRecognition();
+
+        speechTextView.setText(result.getHypothesis());
+
     }
 
     @Override
@@ -78,32 +100,6 @@ public class FSAlarmActivity extends AppCompatActivity {
         hide();
     }
 
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    // potentially not needed
-            /*
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            switch (motionEvent.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    if (AUTO_HIDE) {
-                        delayedHide(0);
-                    }
-                    break;
-                case MotionEvent.ACTION_UP:
-                    view.performClick();
-                    break;
-                default:
-                    break;
-            }
-            return false;
-        }
-    };
-             */
 
     // not needed
     private void toggle() {
@@ -187,4 +183,6 @@ public class FSAlarmActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+
 }

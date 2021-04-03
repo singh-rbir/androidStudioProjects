@@ -35,7 +35,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         //if(intent.getAction().equals(ACTION_CUSTOM_BROADCAST)){
             Intent serviceIntent = new Intent(context, AlarmService.class);
-            serviceIntent.putExtras(intent);
+            if(intent != null)
+                serviceIntent.putExtras(intent);
             serviceIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             //context.stopService(serviceIntent);

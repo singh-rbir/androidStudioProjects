@@ -8,9 +8,16 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
@@ -49,6 +56,47 @@ public class AlarmService extends Service {
         Log.d("asdfasdf", "service onStartCommand");
         Toast.makeText(this, "service starting (onStartCommand)", Toast.LENGTH_SHORT).show();
 
+        /*
+        final WindowManager mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        //final LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        WindowManager.LayoutParams mLayoutParams = new WindowManager.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.TYPE_APPLICATION,
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
+                PixelFormat.TRANSLUCENT
+        );
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.O){
+            mLayoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else
+            mLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
+        mLayoutParams.gravity = Gravity.TOP | Gravity.START;
+        mLayoutParams.x = 0;
+        mLayoutParams.y = 0;
+        mLayoutParams.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                WindowManager.LayoutParams.FLAG_FULLSCREEN |
+                //WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                //WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON |
+                //WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
+                WindowManager.LayoutParams.FLAG_DIM_BEHIND |
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON|
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
+
+        final View view = LayoutInflater.from(this).inflate(R.layout.activity_f_s_alarm, null);
+        //final View view = inflater.inflate(R.layout.activity_f_s_alarm, null);
+        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWindowManager.removeView(view);
+            }
+        });
+        mWindowManager.addView(view, mLayoutParams);
+
+       */
+
+
         //mNotifyManager.notify(0, getNotificationBuilder().build());
 
 //        String time = "";
@@ -66,10 +114,13 @@ public class AlarmService extends Service {
 //
 //        long startTime = calendar.getTimeInMillis();
 
+
         Intent alarmIntent = new Intent(this, FSAlarmActivity.class);
-        alarmIntent.putExtras(intent);
+        if (intent != null)
+            alarmIntent.putExtras(intent);
         alarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         getApplicationContext().startActivity(alarmIntent);
+
 
 //        PendingIntent pi = PendingIntent.getActivity(this, code + 1, alarmIntent, 0);
 //        Log.d("asdf", "----right before setting alarm in service: " + startTime);

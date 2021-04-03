@@ -4,19 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context=".FSAlarmActivity">
+    tools:context=".FSAlarmActivity"
+    android:id="@+id/frameLayout">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <RelativeLayout
+        android:id="@+id/fs_relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:foregroundGravity="center_horizontal"
         android:gravity="center_horizontal">
 
-        <TextView android:id="@+id/fullscreen_content"
+        <TextView
+            android:id="@+id/fullscreen_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:keepScreenOn="true"
@@ -30,11 +33,22 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="96dp"
             android:layout_below="@id/fullscreen_content"
             android:gravity="center"
+            android:onClick="micButtonClick"
             android:layout_centerHorizontal="true"
             android:text="Button" />
+
+        <TextView android:id="@+id/speech_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_below="@id/button"
+            android:text="You spoke: " />
     </RelativeLayout>
 
 

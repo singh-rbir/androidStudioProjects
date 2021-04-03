@@ -18,6 +18,8 @@
             android:name=".FSAlarmActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_f_s_alarm"
+            android:excludeFromRecents="true"
+            android:showOnLockScreen="true"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
